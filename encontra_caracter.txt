@@ -1,0 +1,24 @@
+encontra_caracter: 
+    # Inicializar os registradores
+    li $v0, 0              # Inicializa $v0 com 0 (não encontrou ainda)
+    li $v1, 0              # Inicializa $v1 com 0 (contador de incidências)
+    
+    loop:
+        lb $t0, 0($a1)     # Carrega o próximo caractere da string S1 em $t0
+        beqz $t0, fim      # Se for o final da string (caractere nulo), sai do loop
+        
+        # Verifica se o caractere de S1 é igual ao caractere procurado
+        beq $t0, $a0, encontrou
+        
+        j próximo_caractere
+
+    encontrou:
+        addi $v1, $v1, 1    # Incrementa o contador de incidências
+        li $v0, 1            # Marca que encontrou ao definir $v0 como 1
+    
+    próximo_caractere:
+        addi $a1, $a1, 1     # Avança para o próximo caractere da string
+        j loop               # Repete o loop
+
+    fim:
+        jr $ra               # Retorna ao chamador
