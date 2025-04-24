@@ -24,7 +24,7 @@ main:
 
     blt $t0, 192, class_b
 
-    blt $t0, 255, class_c
+    blt $t0, 256, class_c
 
     j error_range
 
